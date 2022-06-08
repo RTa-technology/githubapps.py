@@ -21,7 +21,7 @@ __all__ = ['Authentication', 'Auth']
 class Authentication(metaclass=ABCMeta):
     def __init__(self, app_id: int, installation_id: int, client_secret, *, iat: int = 30, exp: int = 30):
         self.installation_id = installation_id
-        self.endpoint = 'https://api.github.com/installations/{}/access_tokens'.format(
+        self.endpoint = 'https://api.github.com/app/installations/{}/access_tokens'.format(
             self.installation_id)
         self.algorithm = "RS256"
         self.app_id = app_id
@@ -247,9 +247,9 @@ class Auth(Authentication):
             _jwt = self.gen_jwt()
         if client_public is None:
             client_public = self.gen_pubkey()
+        
         try:
-            decoded_jwt = jwt.decode(_jwt, key=client_public,
-                                     audience=self.endpoint, algorithms=self.algorithm)
+            decoded_jwt = jwt.decode(_jwt, key=client_public, algorithms=self.algorithm)
             if decoded_jwt['iss'] == self.app_id:
                 return True
         except:
@@ -278,7 +278,7 @@ class Auth(Authentication):
             _jwt = self.gen_jwt()
 
         headers = {
-            'Accept': 'application/vnd.github.machine-man-preview+json',
+            'Accept': 'application/vnd.github.v3+json',
             'Authorization': 'Bearer {}'.format(_jwt),
         }
         if self.is_authorization():
@@ -316,7 +316,7 @@ class Auth(Authentication):
         """
         if access_token_response is None:
             access_token_response = self.get_access_token_response()
-        return access_token_response['access_token']
+        return access_token_response["token"]
 
     def get_usage(self) -> None:
         return None
