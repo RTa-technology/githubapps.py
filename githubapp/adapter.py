@@ -247,9 +247,10 @@ class Auth(Authentication):
             _jwt = self.gen_jwt()
         if client_public is None:
             client_public = self.gen_pubkey()
-        
+
         try:
-            decoded_jwt = jwt.decode(_jwt, key=client_public, algorithms=self.algorithm)
+            decoded_jwt = jwt.decode(
+                _jwt, key=client_public, algorithms=self.algorithm)
             if decoded_jwt['iss'] == self.app_id:
                 return True
         except:
