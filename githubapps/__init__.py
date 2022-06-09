@@ -9,7 +9,7 @@ __title__ = 'githubapps'
 __author__ = 'RTa-technology'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2022 by the authors and contributors (see AUTHORS)'
-__version__ = '0.1.1'
+__version__ = '1.0.0'
 
 __path__ = __import__('pkgutil').extend_path(__path__, __name__)
 
