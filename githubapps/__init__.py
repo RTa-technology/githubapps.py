@@ -5,7 +5,7 @@ make requests to the API and return the results as a dictionary.
 :copyright: (c) 2022 by the authors and contributors (see AUTHORS).
 :license: MIT, see LICENSE for more details.
 """
-__title__ = 'githubapp'
+__title__ = 'githubapps'
 __author__ = 'RTa-technology'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2022 by the authors and contributors (see AUTHORS)'
