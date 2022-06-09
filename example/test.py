@@ -6,7 +6,6 @@ from github import Github
 
 
 def main():
-
     with open('env/private.key', 'rb') as f_private:
         private_key = f_private.read()
     with open('env/app_id.key', 'r') as f_app_id:
@@ -36,7 +35,6 @@ def main():
     else:
         repo.create_file(file, "create: GithubApps",
                          '---\nurl: content\nuser: user\nstarttime: "2022-04-11"\nendtime: "2022-07-11"\n---\n<reserve />', branch="reserve")
-
 
 if __name__ == "__main__":
     main()
