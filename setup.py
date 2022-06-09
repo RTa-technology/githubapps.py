@@ -17,7 +17,7 @@ with open('README.md', 'r') as f:
     long_description = f.read()
 
 setuptools.setup(
-    name='githubapps',
+    name='githubapps.py',
     version=version,
     license='MIT',
     description='This is a wrapper for the Github Apps API.',
