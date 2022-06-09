@@ -1,4 +1,11 @@
 # githubapps.py
+[![GitHub license](https://img.shields.io/github/license/RTa-technology/githubapps.py)](https://github.com/RTa-technology/githubapps.py/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/RTa-technology/githubapps.py)](https://github.com/RTa-technology/githubapps.py/issues)
+[![GitHub forks](https://img.shields.io/github/forks/RTa-technology/githubapps.py)](https://github.com/RTa-technology/githubapps.py/network)
+[![GitHub stars](https://img.shields.io/github/stars/RTa-technology/githubapps.py)](https://github.com/RTa-technology/githubapps.py/stargazers)
+[![PyPI version](https://badge.fury.io/py/githubapps.py.svg)](https://badge.fury.io/py/githubapps.py)
+[![Python Versions](https://img.shields.io/pypi/pyversions/githubapps.py.svg)](https://pypi.org/project/githubapps.py/)
+[![Downloads](https://static.pepy.tech/personalized-badge/githubapps-py?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads)](https://pepy.tech/project/githubapps-py)
 
 A Python wrapper for the Github Apps API
   
