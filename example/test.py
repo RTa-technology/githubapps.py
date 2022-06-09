@@ -13,7 +13,7 @@ def main():
     with open('env/installation_id.key', 'r') as f_installation_id:
         installation_id = f_installation_id.read()
     client_secret = private_key
-    auth = githubapps.AiohttpAuth(app_id, installation_id, client_secret)
+    auth = githubapps.RequestsAuth(app_id, installation_id, client_secret)
     access_token = auth.get_access_token()
 
     g = Github(access_token)
