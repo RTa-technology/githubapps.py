@@ -1,10 +1,5 @@
-
 import githubapps
-from github import Github
 import asyncio
-
-# using an access token
-
 
 async def main():
     with open('env/private.key', 'rb') as f_private:
@@ -16,8 +11,7 @@ async def main():
     client_secret = private_key
     auth = githubapps.AiohttpAuth(app_id, installation_id, client_secret)
     access_token = await auth.get_access_token()
-
-    g = Github(access_token)
     print(access_token)
+
 if __name__ == "__main__":
     asyncio.run(main())

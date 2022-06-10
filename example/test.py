@@ -1,10 +1,4 @@
-
 import githubapps
-from github import Github
-
-# using an access token
-
-
 def main():
     with open('env/private.key', 'rb') as f_private:
         private_key = f_private.read()
@@ -15,8 +9,7 @@ def main():
     client_secret = private_key
     auth = githubapps.RequestsAuth(app_id, installation_id, client_secret)
     access_token = auth.get_access_token()
-
-    g = Github(access_token)
     print(access_token)
+
 if __name__ == "__main__":
     main()

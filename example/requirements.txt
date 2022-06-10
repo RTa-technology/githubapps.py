@@ -1,5 +1,2 @@
-PyJWT
-aiohttp
-requests
-cryptography
-PyGithub
+githubapps.py
+asyncio
