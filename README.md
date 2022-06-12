@@ -5,7 +5,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/RTa-technology/githubapps.py)](https://github.com/RTa-technology/githubapps.py/stargazers)
 [![PyPI version](https://badge.fury.io/py/githubapps.py.svg)](https://badge.fury.io/py/githubapps.py)
 [![Python Versions](https://img.shields.io/pypi/pyversions/githubapps.py.svg)](https://pypi.org/project/githubapps.py/)
-[![Downloads](https://pepy.tech/badge/githubapps-py)](https://pepy.tech/project/githubapps-py)
+[![Downloads](https://static.pepy.tech/personalized-badge/githubapps-py?period=total&units=abbreviation&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/githubapps-py)
 
 A Python wrapper for the Github Apps API
   
