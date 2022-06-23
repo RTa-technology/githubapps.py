@@ -321,10 +321,42 @@ class RequestsAuth(Authentication):
             access_token_response = self.get_access_token_response()
         return access_token_response["token"]
 
+
+    def get_installation_id(self, *, _jwt: bytes = None, perPage:int = None, page:int=None, since: datetime=None, outdated: str=None, **kwargs) -> Optional[Union[list, dict]]:
+
+        installation_id_endpoint = "https://api.github.com/app/installations"
+        if _jwt is None:
+            _jwt = self.gen_jwt()
+        endpointparsed = urllib.urlparse(installation_id_endpoint)
+        endpointquery = urllib.parse.parse_qs(endpointparsed.query)
+
+        if perPage is not None:
+            endpointquery["per_page"] = perPage
+        if page is not None:
+            endpointquery["page"] = page
+        if since is not None:
+            endpointquery["since"] = since.strftime("%Y-%m-%dT%H:%M:%SZ")
+        if outdated is not None:
+            endpointquery["outdated"] = outdated
+        endpointencoded = urllib.parse.urlencode(endpointquery, doseq=True)
+        endpoint = urllib.parse.ParseResult(endpointparsed.scheme, endpointparsed.netloc, endpointparsed.path, endpointparsed.params, endpointencoded, endpointparsed.fragment).geturl()
+
+        headers = {
+            'Accept': 'application/vnd.github.v3+json',
+            'Authorization': 'Bearer {}'.format(_jwt),
+        }
+
+        req_access_token = requests.get(
+            url=endpoint, headers=headers)
+        try:
+            data = req_access_token.json()
+        except json.JSONDecodeError:
+            print(req_access_token.content)
+        return data
+
+
     def get_usage(self) -> None:
         return None
-
-
 
 class AiohttpAuth(Authentication):
     """Researchmap authentication interface.
@@ -566,6 +598,41 @@ class AiohttpAuth(Authentication):
         if access_token_response is None:
             access_token_response = await self.get_access_token_response()
         return access_token_response["token"]
+
+
+    async def get_installation_id(self, *, _jwt: bytes = None, perPage:int = None, page:int=None, since: datetime=None, outdated: str=None, **kwargs) -> Optional[Union[list, dict]]:
+
+        installation_id_endpoint = "https://api.github.com/app/installations"
+        if _jwt is None:
+            _jwt = self.gen_jwt()
+
+        endpointparsed = urllib.urlparse(installation_id_endpoint)
+        endpointquery = urllib.parse.parse_qs(endpointparsed.query)
+
+        if perPage is not None:
+            endpointquery["per_page"] = perPage
+        if page is not None:
+            endpointquery["page"] = page
+        if since is not None:
+            endpointquery["since"] = since.strftime("%Y-%m-%dT%H:%M:%SZ")
+        if outdated is not None:
+            endpointquery["outdated"] = outdated
+        endpointencoded = urllib.parse.urlencode(endpointquery, doseq=True)
+        endpoint = urllib.parse.ParseResult(endpointparsed.scheme, endpointparsed.netloc, endpointparsed.path, endpointparsed.params, endpointencoded, endpointparsed.fragment).geturl()
+
+        headers = {
+            'Accept': 'application/vnd.github.v3+json',
+            'Authorization': 'Bearer {}'.format(_jwt),
+        }
+
+        async with httpx.AsyncClient() as client:
+            req_access_token = await client.get(
+                url=endpoint, headers=headers)
+            try:
+                data = req_access_token.json()
+            except json.JSONDecodeError:
+                print(req_access_token.content)
+            return data
 
     def get_usage(self) -> None:
         return None
